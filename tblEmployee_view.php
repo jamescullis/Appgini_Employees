@@ -24,33 +24,38 @@
 	$x->QueryFieldsTV = array(   
 		"`tblEmployee`.`id`" => "id",
 		"`tblEmployee`.`firstname`" => "firstname",
-		"`tblEmployee`.`lastname`" => "lastname"
+		"`tblEmployee`.`lastname`" => "lastname",
+		"`tblEmployee`.`mobile`" => "mobile"
 	);
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = array(   
 		1 => '`tblEmployee`.`id`',
 		2 => 2,
-		3 => 3
+		3 => 3,
+		4 => 4
 	);
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = array(   
 		"`tblEmployee`.`id`" => "id",
 		"`tblEmployee`.`firstname`" => "firstname",
-		"`tblEmployee`.`lastname`" => "lastname"
+		"`tblEmployee`.`lastname`" => "lastname",
+		"`tblEmployee`.`mobile`" => "mobile"
 	);
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = array(   
 		"`tblEmployee`.`id`" => "ID",
 		"`tblEmployee`.`firstname`" => "Firstname",
-		"`tblEmployee`.`lastname`" => "Lastname"
+		"`tblEmployee`.`lastname`" => "Lastname",
+		"`tblEmployee`.`mobile`" => "Mobile"
 	);
 
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = array(   
 		"`tblEmployee`.`id`" => "id",
 		"`tblEmployee`.`firstname`" => "firstname",
-		"`tblEmployee`.`lastname`" => "lastname"
+		"`tblEmployee`.`lastname`" => "lastname",
+		"`tblEmployee`.`mobile`" => "mobile"
 	);
 
 	// Lookup fields that can be used as filterers
@@ -83,10 +88,10 @@
 	$x->TableIcon = "table.gif";
 	$x->PrimaryKey = "`tblEmployee`.`id`";
 
-	$x->ColWidth   = array(  150, 150);
-	$x->ColCaption = array("Firstname", "Lastname");
-	$x->ColFieldName = array('firstname', 'lastname');
-	$x->ColNumber  = array(2, 3);
+	$x->ColWidth   = array(  150, 150, 150);
+	$x->ColCaption = array("Firstname", "Lastname", "Mobile");
+	$x->ColFieldName = array('firstname', 'lastname', 'mobile');
+	$x->ColNumber  = array(2, 3, 4);
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/tblEmployee_templateTV.html';

@@ -11,7 +11,7 @@
 		}
 
 		// set up tables
-		setupTable('tblEmployee', "create table if not exists `tblEmployee` (   `id` INT unsigned not null auto_increment , primary key (`id`), `firstname` VARCHAR(40) , `lastname` VARCHAR(40) ) CHARSET utf8", $silent);
+		setupTable('tblEmployee', "create table if not exists `tblEmployee` (   `id` INT unsigned not null auto_increment , primary key (`id`), `firstname` VARCHAR(40) , `lastname` VARCHAR(40) , `mobile` VARCHAR(40) ) CHARSET utf8", $silent, array( "ALTER TABLE tblEmployee ADD `field4` VARCHAR(40)","ALTER TABLE `tblEmployee` CHANGE `field4` `mobile` VARCHAR(40) "));
 
 
 		// save MD5

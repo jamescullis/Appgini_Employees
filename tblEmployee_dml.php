@@ -18,6 +18,8 @@ function tblEmployee_insert(){
 		if($data['firstname'] == empty_lookup_value){ $data['firstname'] = ''; }
 	$data['lastname'] = makeSafe($_REQUEST['lastname']);
 		if($data['lastname'] == empty_lookup_value){ $data['lastname'] = ''; }
+	$data['mobile'] = makeSafe($_REQUEST['mobile']);
+		if($data['mobile'] == empty_lookup_value){ $data['mobile'] = ''; }
 
 	// hook: tblEmployee_before_insert
 	if(function_exists('tblEmployee_before_insert')){
@@ -26,7 +28,7 @@ function tblEmployee_insert(){
 	}
 
 	$o = array('silentErrors' => true);
-	sql('insert into `tblEmployee` set       `firstname`=' . (($data['firstname'] !== '' && $data['firstname'] !== NULL) ? "'{$data['firstname']}'" : 'NULL') . ', `lastname`=' . (($data['lastname'] !== '' && $data['lastname'] !== NULL) ? "'{$data['lastname']}'" : 'NULL'), $o);
+	sql('insert into `tblEmployee` set       `firstname`=' . (($data['firstname'] !== '' && $data['firstname'] !== NULL) ? "'{$data['firstname']}'" : 'NULL') . ', `lastname`=' . (($data['lastname'] !== '' && $data['lastname'] !== NULL) ? "'{$data['lastname']}'" : 'NULL') . ', `mobile`=' . (($data['mobile'] !== '' && $data['mobile'] !== NULL) ? "'{$data['mobile']}'" : 'NULL'), $o);
 	if($o['error']!=''){
 		echo $o['error'];
 		echo "<a href=\"tblEmployee_view.php?addNew_x=1\">{$Translation['< back']}</a>";
@@ -103,6 +105,8 @@ function tblEmployee_update($selected_id){
 		if($data['firstname'] == empty_lookup_value){ $data['firstname'] = ''; }
 	$data['lastname'] = makeSafe($_REQUEST['lastname']);
 		if($data['lastname'] == empty_lookup_value){ $data['lastname'] = ''; }
+	$data['mobile'] = makeSafe($_REQUEST['mobile']);
+		if($data['mobile'] == empty_lookup_value){ $data['mobile'] = ''; }
 	$data['selectedID']=makeSafe($selected_id);
 
 	// hook: tblEmployee_before_update
@@ -112,7 +116,7 @@ function tblEmployee_update($selected_id){
 	}
 
 	$o=array('silentErrors' => true);
-	sql('update `tblEmployee` set       `firstname`=' . (($data['firstname'] !== '' && $data['firstname'] !== NULL) ? "'{$data['firstname']}'" : 'NULL') . ', `lastname`=' . (($data['lastname'] !== '' && $data['lastname'] !== NULL) ? "'{$data['lastname']}'" : 'NULL') . " where `id`='".makeSafe($selected_id)."'", $o);
+	sql('update `tblEmployee` set       `firstname`=' . (($data['firstname'] !== '' && $data['firstname'] !== NULL) ? "'{$data['firstname']}'" : 'NULL') . ', `lastname`=' . (($data['lastname'] !== '' && $data['lastname'] !== NULL) ? "'{$data['lastname']}'" : 'NULL') . ', `mobile`=' . (($data['mobile'] !== '' && $data['mobile'] !== NULL) ? "'{$data['mobile']}'" : 'NULL') . " where `id`='".makeSafe($selected_id)."'", $o);
 	if($o['error']!=''){
 		echo $o['error'];
 		echo '<a href="tblEmployee_view.php?SelectedID='.urlencode($selected_id)."\">{$Translation['< back']}</a>";
@@ -245,6 +249,7 @@ function tblEmployee_form($selected_id = '', $AllowUpdate = 1, $AllowInsert = 1,
 	if(($selected_id && !$AllowUpdate && !$AllowInsert) || (!$selected_id && !$AllowInsert)){
 		$jsReadOnly .= "\tjQuery('#firstname').replaceWith('<div class=\"form-control-static\" id=\"firstname\">' + (jQuery('#firstname').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\tjQuery('#lastname').replaceWith('<div class=\"form-control-static\" id=\"lastname\">' + (jQuery('#lastname').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\tjQuery('#mobile').replaceWith('<div class=\"form-control-static\" id=\"mobile\">' + (jQuery('#mobile').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\tjQuery('.select2-container').hide();\n";
 
 		$noUploads = true;
@@ -275,6 +280,7 @@ function tblEmployee_form($selected_id = '', $AllowUpdate = 1, $AllowInsert = 1,
 	$templateCode = str_replace('<%%UPLOADFILE(id)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(firstname)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(lastname)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(mobile)%%>', '', $templateCode);
 
 	// process values
 	if($selected_id){
@@ -287,6 +293,9 @@ function tblEmployee_form($selected_id = '', $AllowUpdate = 1, $AllowInsert = 1,
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(lastname)%%>', safe_html($urow['lastname']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(lastname)%%>', html_attr($row['lastname']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(lastname)%%>', urlencode($urow['lastname']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(mobile)%%>', safe_html($urow['mobile']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(mobile)%%>', html_attr($row['mobile']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(mobile)%%>', urlencode($urow['mobile']), $templateCode);
 	}else{
 		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
@@ -294,6 +303,8 @@ function tblEmployee_form($selected_id = '', $AllowUpdate = 1, $AllowInsert = 1,
 		$templateCode = str_replace('<%%URLVALUE(firstname)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(lastname)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(lastname)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(mobile)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(mobile)%%>', urlencode(''), $templateCode);
 	}
 
 	// process translations

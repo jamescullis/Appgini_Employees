@@ -132,7 +132,7 @@
 
 	function get_sql_fields($table_name){
 		$sql_fields = array(   
-			'tblEmployee' => "`tblEmployee`.`id` as 'id', `tblEmployee`.`firstname` as 'firstname', `tblEmployee`.`lastname` as 'lastname'"
+			'tblEmployee' => "`tblEmployee`.`id` as 'id', `tblEmployee`.`firstname` as 'firstname', `tblEmployee`.`lastname` as 'lastname', `tblEmployee`.`mobile` as 'mobile'"
 		);
 
 		if(isset($sql_fields[$table_name])){
@@ -201,7 +201,8 @@
 			'tblEmployee' => array(
 				'id' => '',
 				'firstname' => '',
-				'lastname' => ''
+				'lastname' => '',
+				'mobile' => ''
 			)
 		);
 

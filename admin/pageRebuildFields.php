@@ -13,7 +13,8 @@
 		'tblEmployee' => array(   
 			'id' => array('appgini' => 'INT unsigned not null primary key auto_increment '),
 			'firstname' => array('appgini' => 'VARCHAR(40) '),
-			'lastname' => array('appgini' => 'VARCHAR(40) ')
+			'lastname' => array('appgini' => 'VARCHAR(40) '),
+			'mobile' => array('appgini' => 'VARCHAR(40) ')
 		)
 	);
 
